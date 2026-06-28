@@ -1,4 +1,4 @@
-# Lema.web — Cinematic Creative Developer Portfolio
+Cinematic Creative Developer Portfolio
 
 A premium, award-winning style portfolio built with **React + Vite + TailwindCSS**, powered by **GSAP + ScrollTrigger**, **Lenis** smooth scrolling, and **AOS** reveal animations.
 
