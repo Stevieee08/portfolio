@@ -26,7 +26,6 @@ const ROW_3 = [
   "MongoDB",
   "SQL",
   "Solidity",
-  "Git & GitHub",
   "Axios",
   "Zod",
 ];
