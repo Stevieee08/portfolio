@@ -7,23 +7,6 @@ A cinematic, animation-rich personal portfolio built with **React**, **Vite**, a
 
 ---
 
-## Preview
-
-| Portfolio reveal | Hero |
-| :---: | :---: |
-| ![Portfolio cursor reveal](docs/screenshots/portfolio-reveal.png) | ![Hero section](docs/screenshots/hero.png) |
-
-| Projects | Services |
-| :---: | :---: |
-| ![Projects section](docs/screenshots/projects.png) | ![Services section](docs/screenshots/services.png) |
-
-| Contact | Mobile |
-| :---: | :---: |
-| ![Contact section](docs/screenshots/contact.png) | ![Mobile view](docs/screenshots/mobile.png) |
-
-> Add your screenshot files to `docs/screenshots/` with the names above, or update the paths in this table.
-
----
 
 ## Features
 
