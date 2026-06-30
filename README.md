@@ -1,58 +1,171 @@
-Cinematic Creative Developer Portfolio
+# Steve Varkey Santhosh — Developer Portfolio
 
-A premium, award-winning style portfolio built with **React + Vite + TailwindCSS**, powered by **GSAP + ScrollTrigger**, **Lenis** smooth scrolling, and **AOS** reveal animations.
+A cinematic, animation-rich personal portfolio built with **React**, **Vite**, and **Tailwind CSS**. Features smooth scrolling (Lenis), scroll-driven animations (GSAP + ScrollTrigger), and reveal effects (AOS).
+
+🔗 **Live demo:** [YOUR_LIVE_URL](YOUR_LIVE_URL)  
+📫 **Contact:** [stevesanthosh2004@gmail.com](mailto:stevesanthosh2004@gmail.com)
+
+---
+
+## Preview
+
+| Portfolio reveal | Hero |
+| :---: | :---: |
+| ![Portfolio cursor reveal](docs/screenshots/portfolio-reveal.png) | ![Hero section](docs/screenshots/hero.png) |
+
+| Projects | Services |
+| :---: | :---: |
+| ![Projects section](docs/screenshots/projects.png) | ![Services section](docs/screenshots/services.png) |
+
+| Contact | Mobile |
+| :---: | :---: |
+| ![Contact section](docs/screenshots/contact.png) | ![Mobile view](docs/screenshots/mobile.png) |
+
+> Add your screenshot files to `docs/screenshots/` with the names above, or update the paths in this table.
+
+---
 
 ## Features
 
-- Fixed fullscreen **Portfolio** hero with a buttery cursor-reveal scanner (blur → sharp mask), animated marching-ants frame, and live background color switcher.
-- Smooth inertia scrolling (Lenis) synced to the GSAP ticker.
-- **Hero** split-screen with parallax avatar, rolling role text, and glowing social icons.
-- **Welcome** cinematic typography reveal + infinite testimonial marquees.
-- **Projects** scroll-triggered 3D card grid (desktop) / snap carousel (mobile).
-- **Services** pinned 3D half-circle scroll carousel with dynamic background color.
-- **Contact** pinned glassmorphism form with WhatsApp integration.
-- Luxury yellow marquee **Footer** with floating profile and CTA buttons.
-- Hide-on-scroll responsive navbar with fullscreen mobile overlay + feedback modal.
+- **Portfolio** — Fullscreen hero with cursor-reveal scanner, animated frame, and live background color switcher
+- **Smooth scroll** — Lenis inertia scrolling synced with the GSAP ticker
+- **Hero** — Split layout with parallax avatar, rolling role text, and social links
+- **Welcome** — Cinematic typography reveal and infinite testimonial marquees
+- **Skills** — Animated skill marquee rows
+- **Projects** — Scroll-triggered 3D card grid (desktop) / snap carousel (mobile) with detail modals
+- **Services** — Pinned 3D half-circle scroll carousel with dynamic background
+- **Contact** — Glassmorphism form with WhatsApp integration
+- **Footer** — Marquee CTA with profile and social buttons
+- **Navbar** — Hide-on-scroll navigation with fullscreen mobile overlay
 
-## Getting Started
+---
+
+## Tech stack
+
+| Purpose        | Library                |
+| -------------- | ---------------------- |
+| Framework      | React 18 + Vite 5      |
+| Styling        | Tailwind CSS 3         |
+| Animation      | GSAP 3 + ScrollTrigger |
+| Smooth scroll  | Lenis                  |
+| Reveal effects | AOS                    |
+| Icons          | react-icons            |
+
+---
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) **18+** (LTS recommended)
+- [npm](https://www.npmjs.com/) (comes with Node) or [pnpm](https://pnpm.io/) / [yarn](https://yarnpkg.com/)
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Stevieee08/portfolio.git
+cd portfolio
+```
+
+### 2. Install dependencies
 
 ```bash
 npm install
-npm run dev      # start dev server
-npm run build    # production build
-npm run preview  # preview build
 ```
 
-## Tech Stack
+### 3. Start the development server
 
-| Purpose          | Library                          |
-| ---------------- | -------------------------------- |
-| Framework        | React 18 + Vite 5                |
-| Styling          | TailwindCSS 3                    |
-| Animation        | GSAP 3 + ScrollTrigger           |
-| Smooth scroll    | Lenis                            |
-| Reveal effects   | AOS                              |
-| Icons            | react-icons                      |
+```bash
+npm run dev
+```
 
-## Structure
+Open the URL shown in the terminal (usually `http://localhost:5173`).
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+Output goes to the `dist/` folder.
+
+### 5. Preview the production build locally
+
+```bash
+npm run preview
+```
+
+---
+
+## Project structure
 
 ```
 src/
-├── App.jsx              # Lenis + GSAP + AOS bootstrap, layout
-├── components/
-│   ├── Navbar.jsx
-│   ├── Portfolio.jsx    # fixed cursor-reveal background
-│   ├── Hero.jsx
-│   ├── Welcome.jsx
-│   ├── Projects.jsx
-│   ├── Services.jsx
-│   ├── Contact.jsx
-│   └── Footer.jsx
-└── assets/              # portrait-real.png, avatar-cartoon.png
+├── App.jsx                 # Lenis + GSAP + AOS setup, page layout
+├── main.jsx
+├── index.css
+├── assets/                 # Images (avatar, portrait, etc.)
+└── components/
+    ├── Navbar.jsx
+    ├── Portfolio.jsx       # Fixed cursor-reveal background
+    ├── Hero.jsx
+    ├── Welcome.jsx
+    ├── Skills.jsx
+    ├── Projects.jsx
+    ├── Services.jsx
+    ├── Contact.jsx
+    └── Footer.jsx
+
+docs/
+└── screenshots/            # README preview images (not used by the app)
 ```
+
+---
 
 ## Customization
 
-- Update the WhatsApp number in `Contact.jsx` / `Hero.jsx` / `Footer.jsx` (`917695973074`).
-- Swap project/service/testimonial data arrays at the top of each component.
-- Brand colors live in `tailwind.config.js` (`brand.yellow`, `brand.gold`, `brand.blue`).
+| What to change | Where |
+| -------------- | ----- |
+| Projects list | `src/components/Projects.jsx` — `PROJECTS` array |
+| Skills | `src/components/Skills.jsx` — `ROW_1`, `ROW_2`, `ROW_3` |
+| Services | `src/components/Services.jsx` |
+| Social / WhatsApp links | `Hero.jsx`, `Contact.jsx`, `Footer.jsx` |
+| Brand colors | `tailwind.config.js` (`brand.yellow`, `brand.gold`, `brand.blue`) |
+| Portrait / avatar images | `src/assets/` |
+
+---
+
+## Deployment
+
+This is a static Vite app. Deploy the `dist/` folder after `npm run build`.
+
+**Vercel / Netlify**
+
+1. Push the repo to GitHub
+2. Import the project on [Vercel](https://vercel.com) or [Netlify](https://netlify.com)
+3. Build command: `npm run build`
+4. Output directory: `dist`
+
+**GitHub Pages**
+
+Add `base: '/portfolio/'` in `vite.config.js` (use your repo name), then deploy `dist/` to GitHub Pages.
+
+---
+
+## Author
+
+**Steve Varkey Santhosh**  
+Full Stack Developer · React Native Specialist · Team Leader
+
+- GitHub: [@Stevieee08](https://github.com/Stevieee08)
+- LinkedIn: [stevesanthosh08](https://www.linkedin.com/in/stevesanthosh08/)
+- Instagram: [@steve._santhosh._](https://www.instagram.com/steve._santhosh._)
+
+---
+
+## License
+
+This project is open source for portfolio purposes.  
+© Steve Varkey Santhosh — All rights reserved.
