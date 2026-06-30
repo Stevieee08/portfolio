@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FiChevronRight } from "react-icons/fi";
 
 const IMG = "?auto=format&fit=crop&w=800&q=80";
 
@@ -132,6 +133,10 @@ export default function Services() {
         <h3 className="mt-1 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
           Services
         </h3>
+        <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-medium uppercase tracking-widest text-white/50 md:hidden">
+          Swipe
+          <FiChevronRight className="animate-bounce-x" size={16} />
+        </p>
       </div>
 
       {/* Desktop 3D carousel */}

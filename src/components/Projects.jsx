@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FiArrowUpRight, FiX, FiGithub } from "react-icons/fi";
+import { FiArrowUpRight, FiX, FiGithub, FiChevronRight } from "react-icons/fi";
 
 const IMG = "?auto=format&fit=crop&w=900&q=80";
 
@@ -259,6 +259,10 @@ export default function Projects() {
           <h3 className="mt-2 text-4xl font-black uppercase tracking-tight sm:text-6xl">
             Featured Work
           </h3>
+          <p className="mt-4 flex items-center justify-center gap-1.5 text-xs font-medium uppercase tracking-widest text-zinc-400 md:hidden">
+            Swipe
+            <FiChevronRight className="animate-bounce-x" size={16} />
+          </p>
         </div>
 
         <div

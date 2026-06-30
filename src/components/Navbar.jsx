@@ -10,6 +10,16 @@ const LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
+// darkText: true → black nav text (light page bg), false → white nav text
+const SECTION_NAV_THEMES = [
+  { id: "about", darkText: true },
+  { id: "welcome", darkText: true },
+  { id: "skills", darkText: false },
+  { id: "projects", darkText: true },
+  { id: "services", darkText: false },
+  { id: "contact", darkText: false },
+];
+
 export default function Navbar() {
   const navRef = useRef(null);
   const logoRef = useRef(null);
@@ -17,7 +27,31 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [lightBg, setLightBg] = useState(false);
   const lastScroll = useRef(0);
+
+  const updateNavTheme = () => {
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const probeY = 72;
+
+    if (y < vh * 0.85) {
+      setLightBg(false);
+      return;
+    }
+
+    for (const { id, darkText } of SECTION_NAV_THEMES) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (probeY >= rect.top && probeY <= rect.bottom) {
+        setLightBg(darkText);
+        return;
+      }
+    }
+
+    setLightBg(false);
+  };
 
   // intro animation
   useEffect(() => {
@@ -35,15 +69,21 @@ export default function Navbar() {
     );
   }, []);
 
-  // hide on scroll down, show on scroll up
+  // hide on scroll down, show on scroll up + sync nav theme with section bg
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
       setHidden(y > lastScroll.current && y > 120);
       lastScroll.current = y;
+      updateNavTheme();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", updateNavTheme);
+    updateNavTheme();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateNavTheme);
+    };
   }, []);
 
   useEffect(() => {
@@ -58,12 +98,14 @@ export default function Navbar() {
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <nav className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-2xl px-5 py-3.5 glass sm:px-7">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 transition-colors duration-300 md:mt-4 md:rounded-2xl md:px-7 md:py-3.5 md:glass">
           {/* Logo */}
           <a
             ref={logoRef}
             href="#home"
-            className="group text-xl font-bold tracking-tight font-display sm:text-2xl"
+            className={`group text-xl font-bold tracking-tight font-display transition-colors duration-300 sm:text-2xl ${
+              lightBg ? "text-zinc-900" : "text-white"
+            }`}
           >
             <span className="transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(250,204,21,0.9)]">
               SVS
@@ -77,7 +119,11 @@ export default function Navbar() {
                 <a
                   ref={(el) => (linksRef.current[i] = el)}
                   href={l.href}
-                  className="group relative text-sm font-medium text-white/80 transition hover:text-white"
+                  className={`group relative text-sm font-medium transition ${
+                    lightBg
+                      ? "text-zinc-800/90 hover:text-zinc-950"
+                      : "text-white/80 hover:text-white"
+                  }`}
                 >
                   {l.label}
                   <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-brand-gold transition-all duration-300 group-hover:w-full" />
@@ -96,43 +142,60 @@ export default function Navbar() {
 
             <button
               onClick={() => setOpen((o) => !o)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white md:hidden"
+              className={`flex h-10 w-10 items-center justify-center transition-colors duration-300 md:hidden ${
+                lightBg ? "text-zinc-900" : "text-white"
+              }`}
               aria-label="Menu"
             >
-              {open ? <FiX size={22} /> : <FiMenu size={22} />}
+              {open ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         </nav>
       </header>
 
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile compact dropdown */}
+      {open && (
+        <button
+          type="button"
+          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        />
+      )}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-zinc-950/95 backdrop-blur-3xl transition-all duration-500 md:hidden ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed right-4 top-14 z-50 w-44 rounded-xl border border-white/10 bg-zinc-950/95 py-3 shadow-xl backdrop-blur-xl transition-all duration-300 md:hidden ${
+          open
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-2 opacity-0"
         }`}
       >
-        {LINKS.map((l, i) => (
-          <a
-            key={l.label}
-            href={l.href}
-            onClick={() => setOpen(false)}
-            className={`text-4xl font-bold tracking-tight transition-all duration-500 ${
-              open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-            }`}
-            style={{ transitionDelay: `${i * 70}ms` }}
+        <ul className="flex flex-col">
+          {LINKS.map((l, i) => (
+            <li key={l.label}>
+              <a
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`block px-4 py-2.5 text-sm font-medium text-white/85 transition hover:bg-white/5 hover:text-white ${
+                  open ? "translate-x-0 opacity-100" : "translate-x-2 opacity-0"
+                }`}
+                style={{ transitionDelay: `${i * 40}ms` }}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="mx-3 mt-1 border-t border-white/10 pt-2">
+          <button
+            onClick={() => {
+              setOpen(false);
+              setModal(true);
+            }}
+            className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-gold px-3 py-2 text-xs font-semibold text-black"
           >
-            {l.label}
-          </a>
-        ))}
-        <button
-          onClick={() => {
-            setOpen(false);
-            setModal(true);
-          }}
-          className="mt-4 rounded-full bg-brand-gold px-8 py-3 font-semibold text-black"
-        >
-          Add Feedback
-        </button>
+            <FiStar size={12} /> Feedback
+          </button>
+        </div>
       </div>
 
       {/* Feedback modal */}
