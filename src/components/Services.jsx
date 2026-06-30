@@ -6,25 +6,11 @@ const IMG = "?auto=format&fit=crop&w=800&q=80";
 
 const SERVICES = [
   {
-    title: "Business Website",
-    tag: "Corporate",
-    color: "#648c11",
-    description: "Corporate websites optimized for conversion and premium branding.",
-    image: `https://images.unsplash.com/photo-1486406146926-c627a92ad1ab${IMG}`,
-  },
-  {
-    title: "Admin Dashboard",
-    tag: "SaaS",
-    color: "#ff4500",
-    description: "Advanced dashboards with analytics and data visualization.",
-    image: `https://images.unsplash.com/photo-1551288049-bebda4e38f71${IMG}`,
-  },
-  {
-    title: "E-Commerce Store",
-    tag: "Retail",
-    color: "#000080",
-    description: "Luxury online shopping experiences with seamless checkout.",
-    image: `https://images.unsplash.com/photo-1556742049-0cfed4f6a45d${IMG}`,
+    title: "Full Stack Web App",
+    tag: "App",
+    color: "#3f3f46",
+    description: "Scalable web apps with powerful FastAPI / Node backends.",
+    image: `https://images.unsplash.com/photo-1461749280684-dccba630e2f6${IMG}`,
   },
   {
     title: "Mobile App Development",
@@ -34,6 +20,13 @@ const SERVICES = [
     image: `https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c${IMG}`,
   },
   {
+    title: "Business Website",
+    tag: "Corporate",
+    color: "#648c11",
+    description: "Corporate websites optimized for conversion and premium branding.",
+    image: `https://images.unsplash.com/photo-1486406146926-c627a92ad1ab${IMG}`,
+  },
+  {
     title: "Portfolio Website",
     tag: "Creative",
     color: "#b59000",
@@ -41,11 +34,11 @@ const SERVICES = [
     image: `https://images.unsplash.com/photo-1499951360447-b19be8fe80f5${IMG}`,
   },
   {
-    title: "Full Stack Web App",
-    tag: "App",
-    color: "#3f3f46",
-    description: "Scalable web apps with powerful FastAPI / Node backends.",
-    image: `https://images.unsplash.com/photo-1461749280684-dccba630e2f6${IMG}`,
+    title: "Admin Dashboard",
+    tag: "SaaS",
+    color: "#ff4500",
+    description: "Advanced dashboards with analytics and data visualization.",
+    image: `https://images.unsplash.com/photo-1551288049-bebda4e38f71${IMG}`,
   },
 ];
 

@@ -92,16 +92,8 @@ export default function Footer() {
         <div className="mx-auto mt-12 h-px w-full max-w-4xl rounded-full bg-black/20" />
 
         {/* copyright */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-3 text-xs font-bold text-black/70 sm:flex-row">
+        <div className="mt-8 text-center text-xs font-bold text-black/70">
           <span>© {new Date().getFullYear()} Steve Varkey Santhosh — All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#" className="transition hover:text-black">
-              Privacy
-            </a>
-            <a href="#" className="transition hover:text-black">
-              Terms
-            </a>
-          </div>
         </div>
       </div>
     </footer>
