@@ -23,6 +23,9 @@ export default function Portfolio() {
       { scale: 1, opacity: 1, duration: 1.1, ease: "power3.out" }
     );
 
+    const mq = window.matchMedia("(min-width: 768px)");
+    if (!mq.matches) return;
+
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const cur = { ...target };
     let raf;
@@ -48,18 +51,12 @@ export default function Portfolio() {
     };
 
     const onPointerMove = (e) => move(e.clientX, e.clientY);
-    const onTouchMove = (e) => {
-      const t = e.touches[0];
-      if (t) move(t.clientX, t.clientY);
-    };
 
     el.addEventListener("pointermove", onPointerMove);
-    el.addEventListener("touchmove", onTouchMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       el.removeEventListener("pointermove", onPointerMove);
-      el.removeEventListener("touchmove", onTouchMove);
     };
   }, []);
 
@@ -78,8 +75,17 @@ export default function Portfolio() {
         </h1>
       </div>
 
-      {/* blurred base image */}
-      <div className={`${imgLayout} flex`}>
+      {/* mobile: plain clear portrait */}
+      <div className={`${imgLayout} flex md:hidden`}>
+        <img
+          src={portrait}
+          alt="Steve Varkey Santhosh"
+          className={`pf-img ${imgClass}`}
+        />
+      </div>
+
+      {/* desktop: blurred base image */}
+      <div className={`${imgLayout} hidden md:flex`}>
         <img
           src={portrait}
           alt="Steve Varkey Santhosh"
@@ -88,10 +94,10 @@ export default function Portfolio() {
         />
       </div>
 
-      {/* sharp magnifier — follows pointer / touch */}
+      {/* sharp magnifier — desktop only */}
       <div
         ref={revealRef}
-        className="pointer-events-none absolute left-0 top-0 z-10 overflow-hidden rounded-2xl"
+        className="pointer-events-none absolute left-0 top-0 z-10 hidden overflow-hidden rounded-2xl md:block"
         style={{
           width: BOX,
           height: BOX,
@@ -113,7 +119,6 @@ export default function Portfolio() {
       </div>
 
       <div className="absolute bottom-10 left-1/2 z-30 -translate-x-1/2 select-none text-center text-[10px] font-medium uppercase tracking-[0.3em] text-black/60 sm:text-xs">
-        <span className="md:hidden">Drag to magnify • </span>
         <span className="hidden md:inline">Hover to magnify • </span>
         Scroll to explore
       </div>

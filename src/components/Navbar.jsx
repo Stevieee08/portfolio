@@ -5,7 +5,7 @@ import { FiMenu, FiX, FiStar } from "react-icons/fi";
 const LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Portfolio", href: "#projects" },
+  { label: "Projects", href: "#projects" },
   { label: "Service", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
