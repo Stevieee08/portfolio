@@ -7,7 +7,6 @@ import AOS from "aos";
 import Navbar from "./components/Navbar.jsx";
 import Portfolio from "./components/Portfolio.jsx";
 import Hero from "./components/Hero.jsx";
-import Welcome from "./components/Welcome.jsx";
 import Skills from "./components/Skills.jsx";
 import Projects from "./components/Projects.jsx";
 import Services from "./components/Services.jsx";
@@ -59,7 +58,6 @@ export default function App() {
       {/* Content that overlaps the fixed background */}
       <main className="relative z-20">
         <Hero />
-        <Welcome />
         <Skills />
         <Projects />
         <Services />

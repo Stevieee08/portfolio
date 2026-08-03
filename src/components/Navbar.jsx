@@ -13,7 +13,6 @@ const LINKS = [
 // darkText: true → black nav text (light page bg), false → white nav text
 const SECTION_NAV_THEMES = [
   { id: "about", darkText: true },
-  { id: "welcome", darkText: true },
   { id: "skills", darkText: false },
   { id: "projects", darkText: true },
   { id: "services", darkText: false },

@@ -13,6 +13,7 @@ export default function Portfolio() {
   const sectionRef = useRef(null);
   const revealRef = useRef(null);
   const innerRef = useRef(null);
+  const frameRef = useRef(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -38,6 +39,7 @@ export default function Portfolio() {
       const ry = cur.y - BOX / 2;
 
       gsap.set(revealRef.current, { x: rx, y: ry });
+      gsap.set(frameRef.current, { x: rx, y: ry });
       gsap.set(innerRef.current, { x: -rx, y: -ry });
 
       raf = requestAnimationFrame(tick);
@@ -118,10 +120,49 @@ export default function Portfolio() {
         </div>
       </div>
 
+      {/* square marching-ants frame — desktop only */}
+      <div
+        ref={frameRef}
+        className="pointer-events-none absolute left-0 top-0 z-20 hidden md:block"
+        style={{ width: BOX, height: BOX }}
+      >
+        <div className="ants relative h-full w-full rounded-2xl">
+          {[
+            "-top-1 -left-1",
+            "-top-1 -right-1",
+            "-bottom-1 -left-1",
+            "-bottom-1 -right-1",
+          ].map((pos) => (
+            <span
+              key={pos}
+              className={`absolute h-3 w-3 rounded-sm bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.9)] ${pos}`}
+            />
+          ))}
+        </div>
+      </div>
+
       <div className="absolute bottom-10 left-1/2 z-30 -translate-x-1/2 select-none text-center text-[10px] font-medium uppercase tracking-[0.3em] text-black/60 sm:text-xs">
         <span className="hidden md:inline">Hover to magnify • </span>
         Scroll to explore
       </div>
+
+      <style>{`
+        .ants {
+          border: 2px dashed rgba(59,130,246,0.9);
+          background-image:
+            linear-gradient(90deg, rgba(59,130,246,0.9) 50%, transparent 50%),
+            linear-gradient(90deg, rgba(59,130,246,0.9) 50%, transparent 50%),
+            linear-gradient(0deg, rgba(59,130,246,0.9) 50%, transparent 50%),
+            linear-gradient(0deg, rgba(59,130,246,0.9) 50%, transparent 50%);
+          background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+          background-size: 16px 2px, 16px 2px, 2px 16px, 2px 16px;
+          background-position: 0 0, 0 100%, 0 0, 100% 0;
+          animation: ants 0.6s linear infinite;
+        }
+        @keyframes ants {
+          to { background-position: 16px 0, -16px 100%, 0 -16px, 100% 16px; }
+        }
+      `}</style>
     </section>
   );
 }
